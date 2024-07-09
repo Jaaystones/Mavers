@@ -1,0 +1,3 @@
+20240709	20:28:28	8774fc69-4228-4bfa-8ea3-1511a370cf21	ValidationError: User validation failed: role: Cast to string failed for value "[ 'admin' ]" (type Array) at path "role", email: Please insert an email	POST	/api/auth/register	undefined
+20240709	20:35:32	bd732f6b-0681-4f71-b4c3-0b6383874867	ValidationError: User validation failed: email: Please insert an email	POST	/api/auth/register	undefined
+20240709	21:28:42	14eb3d69-9329-4494-9f82-fb1970728eef	ReferenceError: username is not defined	POST	/api/auth/logout	undefined

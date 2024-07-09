@@ -1,31 +1,39 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express')
-const app = express()
-const path = require('path')
-const { logger, logEvents } = require('./middleware/logger')
-const errorHandler = require('./middleware/errorHandler')
-const cookieParser = require('cookie-parser')
-const cors = require('cors')
+const app = express();
+const path = require('path');
+const { logger, logEvents } = require('./middleware/logger');
+const errorHandler = require('./middleware/errorHandler');
+const cookieParser = require('cookie-parser');
+const authRoutes = require('./routes/authRoutes');
+const taskRoutes = require('./routes/taskRoutes');
+const reminderRoutes = require('./routes/reminderRoutes');
+//const cors = require('cors')
 //const corsOptions = require('./config/corsOptions')
-const  mongoDb = require('./config/dbConfig')
-const mongoose = require('mongoose')
+const  mongoDb = require('./config/dbConfig');
+const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3500
 
-console.log(process.env.NODE_ENV)
+console.log(process.env.NODE_ENV);
 
 //connect to DB
 mongoDb();
+
+
 
 //middlewares
 app.use(logger);
 app.use(cookieParser()); 
 app.use(express.json());
+
 //app.use(cors(corsOptions));
 
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 //routes
-
+app.use('/api/auth', authRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/reminders', reminderRoutes);
 
 app.all('*', (req, res) => {
     res.status(404)
