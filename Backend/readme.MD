@@ -19,11 +19,11 @@ Brief description of your project.
    git clone https://github.com//repository.git
    cd repository
 
-2. ** Install dependencies:**
+2. **Install dependencies:**
    ```bash
    npm install
 
-3. ** Setup the .env file:**
+3. **Setup the .env file:**
     ```bash
   PORT=3500
   NODE_ENV=development
@@ -33,7 +33,7 @@ Brief description of your project.
 
   Replace values with your actual MongoDB URI, access token secret, and Firebase service account key path.
 
-4. ** Start the Server **
+4. **Start the Server**
    ``` bash
    npm start
 
@@ -43,21 +43,21 @@ Brief description of your project.
 
 # Api Routes
 
-** Authentication:**
+**Authentication:**
 
     `POST /api/auth/login`: Login with username and password.
     `POST /api/auth/register`: Register a new user.
     `POST /api/auth/logout`: Log out
     `GET /api/auth/refresh`: Refresh the application
 
-** Users: **
+**Users:**
 
     `GET /api/users`: Get all users.
     `GET /api/users/:id`: Get user by ID.
     `PATCH /api/users/:id`: Update user by ID.
     `DELETE /api/users/:id`: Delete user by ID.
 
-** Tasks: **
+**Tasks:**
 
     `POST /api/tasks`: Create a new task.
     `GET /api/tasks:` Get all tasks.
@@ -65,7 +65,7 @@ Brief description of your project.
     `PUT /api/tasks/:id`: Update task by ID.
     `DELETE /api/tasks/:id`: Delete task by ID.
 
-** Reminders: **
+**Reminders:**
 
 
 # Firebase Configuration
