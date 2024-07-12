@@ -3,13 +3,15 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
   title: { type: String, required: true },
-  description: { type: String },
-  assignedTo: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  deadline: { type: Date, required: true },
-  completed: { type: Boolean, default: false },
-  // Add more fields as needed, e.g., assessment details
-}, 
-{ timestamps: true}
-);
+  description: { type: String, required: true },
+  assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  status: { type: String, enum: ['in-progress', 'completed'], default: 'in-progress' },
+  assessment: {
+    assessedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    comments: { type: String },
+    date: { type: Date }
+  }
+}, { timestamps: true });
 
 module.exports = mongoose.model('Task', taskSchema);
+
