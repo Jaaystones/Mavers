@@ -1,6 +1,6 @@
 .env
 node_modules/
-Backend/logs/
+logs/
 test_data.txt
 
 config/firebaseConfig.json
