@@ -25,11 +25,12 @@ Brief description of your project.
 
 3. **Setup the .env file:**
     ```bash
-  PORT=3500
-  NODE_ENV=development
-  MONGODB_URI=mongodb://localhost:27017/your_database
-  ACCESS_TOKEN_SECRET=your_access_token_secret
-  FIREBASE_SERVICE_ACCOUNT_KEY=path/to/serviceAccountKey.json
+        PORT=3500
+        NODE_ENV=development
+        MONGODB_URI=mongodb://localhost:27017/your_database
+        ACCESS_TOKEN_SECRET=your_access_token_secret
+        FIREBASE_SERVICE_ACCOUNT_KEY=path/to/serviceAccountKey.json
+    ```
 
   Replace values with your actual MongoDB URI, access token secret, and Firebase service account key path.
 
