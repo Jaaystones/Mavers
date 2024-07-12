@@ -4,12 +4,53 @@ Brief description of your project.
 
 ## Table of Contents
 
+- [Project tree](#Project Tree)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Routes](#api-routes)
 - [Firebase Configuration](#firebase-configuration)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Project Tree
+    ```bash
+    root
+    ├── config
+    │   ├── dbConfig.js
+    │   ├── firebaseAdmin.js
+    │   ├── firebaseConfig.json
+    ├── controllers
+    │   ├── authController.js
+    │   ├── reminderController.js
+    │   ├── taskController.js
+    │   └── reminderController.js
+    ├── middleware
+    │   ├── authMiddleware.js
+    │   ├── errorHandler.js
+    │   ├── logger.js
+    │   └── loginLimitter.js
+    ├── models
+    │   ├── User.js
+    │   ├── Task.js
+    │   └── Reminder.js
+    ├── routes
+    │    ├── authRoutes.js
+    │    ├── taskRoutes.js
+    │    ├── root.js
+    │    ├── userRoutes.js
+    │    └── reminderRoutes.js
+    ├── views
+    │    ├── 404.html
+    │    ├── index.html
+    ├── .gitignore
+    ├── .env
+    ├── app.js
+    ├── package.json
+    ├── package-lock.json
+    ├── Readme.MD 
+    ├── user_story.md
+
+```
 
 ## Installation
 
