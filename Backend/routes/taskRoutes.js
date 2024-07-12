@@ -7,8 +7,7 @@ const { createTask,
         updateTask,
         deleteTask
  } = require('../controllers/taskController');
-const { checkAuthenticated, 
-        checkAdmin } = require('../middleware/authMiddleware');
+const { checkAuthenticated, checkAdmin } = require('../middleware/authMiddleware');
 
 // Route for creating a task (only admin can create tasks)
 router.route('/').post(checkAuthenticated, checkAdmin, createTask);

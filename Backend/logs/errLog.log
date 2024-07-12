@@ -5,3 +5,4 @@
 20240710	14:31:59	4a794c6e-8a85-4a36-a8d6-bf523c131ab2	ValidationError: User validation failed: role: Cast to string failed for value "[ 'admin' ]" (type Array) at path "role"	POST	/api/auth/register	undefined
 20240710	14:37:25	b4b0600a-6bff-4575-b1ab-21f8cd2b02ca	ValidationError: User validation failed: role: Cast to string failed for value "[ 'admin' ]" (type Array) at path "role"	POST	/api/auth/register	undefined
 20240712	10:36:11	83dee140-9b4d-489f-8ad3-a809abc6fc87	TypeError: task.remove is not a function	DELETE	/api/tasks/6690f8a910e2a56fe051dec1	undefined
+20240712	12:33:06	89105ca4-2461-4619-ba4a-4a7ab7d1c875	ReferenceError: id is not defined	DELETE	/api/users/668e922bc2588923ee2505d1	undefined
