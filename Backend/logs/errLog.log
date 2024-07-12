@@ -1,8 +1,0 @@
-20240709	20:28:28	8774fc69-4228-4bfa-8ea3-1511a370cf21	ValidationError: User validation failed: role: Cast to string failed for value "[ 'admin' ]" (type Array) at path "role", email: Please insert an email	POST	/api/auth/register	undefined
-20240709	20:35:32	bd732f6b-0681-4f71-b4c3-0b6383874867	ValidationError: User validation failed: email: Please insert an email	POST	/api/auth/register	undefined
-20240709	21:28:42	14eb3d69-9329-4494-9f82-fb1970728eef	ReferenceError: username is not defined	POST	/api/auth/logout	undefined
-20240710	14:27:28	5505d3bb-0491-4359-9be8-18121f20eec2	TypeError: Cannot read properties of undefined (reading 'includes')	POST	/api/auth/register	undefined
-20240710	14:31:59	4a794c6e-8a85-4a36-a8d6-bf523c131ab2	ValidationError: User validation failed: role: Cast to string failed for value "[ 'admin' ]" (type Array) at path "role"	POST	/api/auth/register	undefined
-20240710	14:37:25	b4b0600a-6bff-4575-b1ab-21f8cd2b02ca	ValidationError: User validation failed: role: Cast to string failed for value "[ 'admin' ]" (type Array) at path "role"	POST	/api/auth/register	undefined
-20240712	10:36:11	83dee140-9b4d-489f-8ad3-a809abc6fc87	TypeError: task.remove is not a function	DELETE	/api/tasks/6690f8a910e2a56fe051dec1	undefined
-20240712	12:33:06	89105ca4-2461-4619-ba4a-4a7ab7d1c875	ReferenceError: id is not defined	DELETE	/api/users/668e922bc2588923ee2505d1	undefined
