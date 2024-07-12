@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const createReminder = require('../controllers/reminderController');
-const { checkAuthenticated } = require('../middleware/authMiddleware');
+const { checkAuthenticated, checkAdmin } = require('../middleware/authMiddleware');
+const { createReminder, sendReminder } = require('../controllers/reminderController');
 
 // Create a new reminder
-router.post('/', checkAuthenticated, createReminder);
+router.route('/createReminder').post( checkAuthenticated, checkAdmin, createReminder);
+
+// send a reminder notification
+router.route('/sendReminder').post( checkAuthenticated, checkAdmin, sendReminder);
 
 module.exports = router;

@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const { logger, logEvents } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
+//const firebaseAdmin = require('./config/firebaseAdmin');
 const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
@@ -37,6 +38,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/reminders', reminderRoutes);
 
+//home route
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {

@@ -3,13 +3,13 @@ const Task = require('../models/Task');
 
 // Create a new task
 const createTask = asyncHandler(async (req, res) => {
-  const { title, description, assignedTo } = req.body;
+  const { title, description, assignedTo, dueDate } = req.body;
 
-  if (!title || !description || !assignedTo) {
+  if (!title || !description || !assignedTo || !dueDate) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
-  const task = await Task.create({ title, description, assignedTo });
+  const task = await Task.create({ title, description, assignedTo, dueDate });
 
   if (task) {
     res.status(201).json({ message: 'New task created', task });
@@ -76,7 +76,7 @@ const assessTask = asyncHandler(async (req, res) => {
 // Update a task
 const updateTask = asyncHandler(async (req, res) => {
   const taskId = req.params.id;
-  const { title, description, assignedTo } = req.body;
+  const { title, description, assignedTo, dueDate } = req.body;
 
   const task = await Task.findById(taskId);
 
@@ -93,6 +93,7 @@ const updateTask = asyncHandler(async (req, res) => {
   if (title) task.title = title;
   if (description) task.description = description;
   if (assignedTo) task.assignedTo = assignedTo;
+  if (dueDate) task.dueDate = dueDate;
 
   const updatedTask = await task.save();
 
@@ -116,7 +117,7 @@ const deleteTask = asyncHandler(async (req, res) => {
 
   await Task.deleteOne({ _id: taskId });
 
-  res.status(200).json({ message: `Task assigned to  ${taskId} deleted` });
+  res.status(200).json({ message: `Task assigned to ${taskId} deleted` });
 });
 
 

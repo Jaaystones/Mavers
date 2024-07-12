@@ -17,10 +17,12 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
+    unique: true,
     required: [true, "Please input a password"],
     minlength: [6, "Password must have at least 6 characters"],
   },
-  role: { type: String, enum: ['staff', 'admin'], required: true }, // can have multiple roles as needed
+  role: { type: String, enum: ['staff', 'admin'], required: true },
+  firebaseToken: { type: String }, 
 },
 { timestamps: true }
 );

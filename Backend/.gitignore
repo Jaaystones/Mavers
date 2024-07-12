@@ -2,3 +2,5 @@
 node_modules/
 
 test_data.txt
+
+Backend\config\firebaseConfig.json

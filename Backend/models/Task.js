@@ -10,7 +10,9 @@ const taskSchema = new Schema({
     assessedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     comments: { type: String },
     date: { type: Date }
-  }
+  },
+  createdAt: { type: Date, default: Date.now },
+  dueDate: { type: Date, required: true }, 
 }, { timestamps: true });
 
 module.exports = mongoose.model('Task', taskSchema);
