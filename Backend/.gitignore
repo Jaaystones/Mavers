@@ -1,9 +1,9 @@
 .env
 node_modules/
-
+logs/
 test_data.txt
 
-Backend\config\firebaseConfig.json
+config/firebaseConfig.json
 
 // ignore the directory
 logs/
