@@ -5,13 +5,13 @@ const path = require('path');
 const { logger, logEvents } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
 //const firebaseAdmin = require('./config/firebaseAdmin');
-const cookieParser = require('cookie-parser');
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const userRoutes = require('./routes/userRoutes');
 const reminderRoutes = require('./routes/reminderRoutes');
-//const cors = require('cors')
-//const corsOptions = require('./config/corsOptions')
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
+const corsOptions = require('./config/allowCors')
 const  mongoDb = require('./config/dbConfig');
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3500
@@ -25,10 +25,11 @@ mongoDb();
 
 //middlewares
 app.use(logger);
-app.use(cookieParser()); 
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser())
 
-//app.use(cors(corsOptions));
+
 
 app.use('/', express.static(path.join(__dirname, '/public')));
 
