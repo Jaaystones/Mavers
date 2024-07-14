@@ -81,6 +81,8 @@ Brief description of your project.
 
 # Usage
  This application  uses role base authentication and authorization.
+ The authentication process is utilized jwt webtokens which is added to the authorization header of the client application.
+ The authorization process is handled using an authorization middleware which check for respective rolesand grants access according.
  An administrator has the sole responsibility to create and modify user accounts, tasks and assign tasks to each staff member 
 
 # Api Routes
