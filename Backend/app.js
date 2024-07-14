@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('express-async-errors');
 const express = require('express')
 const app = express();
 const path = require('path');
@@ -10,12 +11,12 @@ const taskRoutes = require('./routes/taskRoutes');
 const userRoutes = require('./routes/userRoutes');
 const reminderRoutes = require('./routes/reminderRoutes');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const cors = require('cors')
-//const corsOptions = require('./config/corsOptions')
+const corsOptions = require('./config/corsOptions')
 const  mongoDb = require('./config/dbConfig');
 const mongoose = require('mongoose');
-const PORT = process.env.PORT || 3500
+const PORT = process.env.PORT || 10000
 
 console.log(process.env.NODE_ENV);
 
@@ -25,15 +26,15 @@ mongoDb();
 
 
 //middlewares
-app.use(logger)
+app.use(logger);
 
-app.use(cors())
+app.use(cors(corpOptions));
 
-app.use(express.json())
+app.use(express.json());
 
 app.use(cookieParser())
-app.use(express.urlencoded({extended: false}));
-app.use(bodyParser.json());
+//app.use(express.urlencoded({extended: false}));
+//app.use(bodyParser.json());
 
 
 app.use('/', express.static(path.join(__dirname, '/public')));
