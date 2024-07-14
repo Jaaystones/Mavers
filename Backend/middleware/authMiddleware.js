@@ -20,14 +20,14 @@ const checkAuthenticated = asyncHandler(async (req, res, next) => {
       return res.status(401).json({ message: 'Unauthorized: User not found' });
     }
 
-    console.log('User:', req.user);
+    //console.log('User:', req.user);
     next();
   });
 });
 
 // Verify Admin Role
 const checkAdmin = asyncHandler(async (req, res, next) => {
-  console.log("Checking admin role for user:", req.user);
+  //console.log("Checking admin role for user:", req.user);
 
   if (req.user && req.user.role.includes('admin')){
     console.log("User is admin");
