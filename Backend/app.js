@@ -28,7 +28,7 @@ mongoDb();
 //middlewares
 app.use(logger);
 
-app.use(cors(corpOptions));
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
