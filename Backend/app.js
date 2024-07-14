@@ -9,9 +9,10 @@ const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const userRoutes = require('./routes/userRoutes');
 const reminderRoutes = require('./routes/reminderRoutes');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors')
-const corsOptions = require('./config/corsOptions')
+//const corsOptions = require('./config/corsOptions')
 const  mongoDb = require('./config/dbConfig');
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3500
@@ -26,11 +27,13 @@ mongoDb();
 //middlewares
 app.use(logger)
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use(express.json())
 
 app.use(cookieParser())
+app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 
 app.use('/', express.static(path.join(__dirname, '/public')));
