@@ -35,7 +35,7 @@ const getAllTasks = asyncHandler(async (req, res) => {
 const getTaskById = asyncHandler(async (req, res) => {
   console.log('Getting task by ID for user:', req.user);
   const taskId = req.params.id;
-  const task = await Task.findById(taskId).populate('assignedTo').exec();
+  const task = await Task.findById(taskId).populate('assignedTo').select('-password').exec();
 
   if (!task) {
     return res.status(404).json({ message: 'Task not found' });
