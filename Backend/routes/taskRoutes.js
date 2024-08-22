@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { upload } = require('../utils/imageUploads');
 const { createTask,
         getAllTasks,
         getTaskById,
@@ -10,7 +11,7 @@ const { createTask,
 const { checkAuthenticated, checkAdmin } = require('../middleware/authMiddleware');
 
 // Route for creating a task (only admin can create tasks)
-router.route('/').post(checkAuthenticated, checkAdmin, createTask);
+router.route('/').post(checkAuthenticated, checkAdmin, upload.single("image"), createTask);
 
 // Route for getting all tasks
 router.route('/').get(checkAuthenticated, checkAdmin, getAllTasks);
@@ -22,7 +23,7 @@ router.route('/:id').get(checkAuthenticated,  getTaskById);
 router.route('/assess').post(checkAuthenticated, checkAdmin, assessTask);
 
 // Route for updating a task
-router.route('/:id').patch(checkAuthenticated, checkAdmin, updateTask);
+router.route('/:id').patch(checkAuthenticated, checkAdmin, upload.single("image"), updateTask);
 
 // Route for deleting a task (only admin can delete tasks)
 router.route('/:id').delete(checkAuthenticated, checkAdmin, deleteTask);

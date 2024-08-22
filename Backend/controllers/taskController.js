@@ -1,22 +1,65 @@
+const fs = require('fs');
 const asyncHandler = require('express-async-handler');
+const cloudinary = require('../config/imageCloudConfig')
 const Task = require('../models/Task');
+const { fileSizeFormatter }   = require('../utils/imageUploads');
+
 
 // Create a new task
 const createTask = asyncHandler(async (req, res) => {
-  const { title, description, assignedTo, dueDate } = req.body;
+  try {
+    
+    const { title, description, assignedTo, dueDate } = req.body;
 
-  if (!title || !description || !assignedTo || !dueDate) {
-    return res.status(400).json({ message: 'All fields are required' });
-  }
+    if (!title || !description || !assignedTo || !dueDate) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
 
-  const task = await Task.create({ title, description, assignedTo, dueDate });
+    let image_Data = {};
 
-  if (task) {
-    res.status(201).json({ message: 'New task created', task });
-  } else {
-    res.status(400).json({ message: 'Invalid task data' });
+    if (req.file) {
+      
+      try {
+        // Upload file to Cloudinary
+          uploadFile = await cloudinary.uploader.upload(req.file.path, {
+          folder: "Mavers",
+          resource_type: "image",
+        });
+
+        image_Data = {
+          fileName: req.file.originalname,
+          filePath: uploadFile.secure_url,
+          fileType: req.file.mimetype,
+          fileSize: fileSizeFormatter(req.file.size, 2),
+        };
+
+        console.log("File data:", image_Data);
+        console.log("Local file path:", req.file.path);
+
+        // Optionally delete the file from the local filesystem
+        fs.unlinkSync(req.file.path);
+
+      } catch (error) {
+        console.error("Error during Cloudinary upload:", error);
+        return res.status(500).json({ message: "Image could not be uploaded" });
+      }
+    } else {
+      console.log("No file found in the request.");
+    }
+
+    const task = await Task.create({ title, description, assignedTo, dueDate, image: image_Data, });
+
+    if (task) {
+      return res.status(201).json({ message: 'New task created', task });
+    } else {
+      return res.status(400).json({ message: 'Invalid task data' });
+    }
+  } catch (error) {
+    console.error("Error creating task:", error);
+    return res.status(500).json({ message: 'Server error' });
   }
 });
+
 
 // Get all tasks
 const getAllTasks = asyncHandler(async (req, res) => {
@@ -76,7 +119,7 @@ const assessTask = asyncHandler(async (req, res) => {
 // Update a task
 const updateTask = asyncHandler(async (req, res) => {
   const taskId = req.params.id;
-  const { title, description, assignedTo, dueDate } = req.body;
+  const { title, description, assignedTo, dueDate, image } = req.body;
 
   const task = await Task.findById(taskId);
 
@@ -94,6 +137,7 @@ const updateTask = asyncHandler(async (req, res) => {
   if (description) task.description = description;
   if (assignedTo) task.assignedTo = assignedTo;
   if (dueDate) task.dueDate = dueDate;
+  if (image) task.image = image;
 
   const updatedTask = await task.save();
 

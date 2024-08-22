@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
+  image: {type: Object, default: {}, },
   assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   status: { type: String, enum: ['in-progress', 'completed'], default: 'in-progress' },
   assessment: {

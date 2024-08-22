@@ -1,4 +1,4 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 require('express-async-errors');
 const express = require('express')
 const app = express();
@@ -16,6 +16,7 @@ const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const  mongoDb = require('./config/dbConfig');
 const mongoose = require('mongoose');
+dotenv.config();
 const PORT = process.env.PORT || 10000
 
 console.log(process.env.NODE_ENV);
