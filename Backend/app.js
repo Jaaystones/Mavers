@@ -9,6 +9,7 @@ const errorHandler = require('./middleware/errorHandler');
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const userRoutes = require('./routes/userRoutes');
+const passwordRoutes = require('./routes/passwordRoutes');
 const reminderRoutes = require('./routes/reminderRoutes');
 const cookieParser = require('cookie-parser');
 //const bodyParser = require('body-parser');
@@ -41,6 +42,7 @@ app.use(cookieParser())
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 //routes
+app.use('/api/', passwordRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/tasks', taskRoutes);
