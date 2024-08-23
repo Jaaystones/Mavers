@@ -33,14 +33,14 @@ const createTask = asyncHandler(async (req, res) => {
           fileSize: fileSizeFormatter(req.file.size, 2),
         };
 
-        console.log("File data:", image_Data);
-        console.log("Local file path:", req.file.path);
+        // console.log("File data:", image_Data);
+        // console.log("Local file path:", req.file.path);
 
         // Optionally delete the file from the local filesystem
         fs.unlinkSync(req.file.path);
 
       } catch (error) {
-        console.error("Error during Cloudinary upload:", error);
+        // console.error("Error during Cloudinary upload:", error);
         return res.status(500).json({ message: "Image could not be uploaded" });
       }
     } else {
@@ -55,7 +55,7 @@ const createTask = asyncHandler(async (req, res) => {
       return res.status(400).json({ message: 'Invalid task data' });
     }
   } catch (error) {
-    console.error("Error creating task:", error);
+    // console.error("Error creating task:", error);
     return res.status(500).json({ message: 'Server error' });
   }
 });
@@ -63,7 +63,7 @@ const createTask = asyncHandler(async (req, res) => {
 
 // Get all tasks
 const getAllTasks = asyncHandler(async (req, res) => {
-  console.log('Getting all tasks for user:', req.user);
+  // console.log('Getting all tasks for user:', req.user);
   let tasks;
   if (req.user.role === 'admin') {
     tasks = await Task.find().populate('assignedTo').exec();
@@ -76,7 +76,7 @@ const getAllTasks = asyncHandler(async (req, res) => {
 
 // Get a specific task by ID
 const getTaskById = asyncHandler(async (req, res) => {
-  console.log('Getting task by ID for user:', req.user);
+  // console.log('Getting task by ID for user:', req.user);
   const taskId = req.params.id;
   const task = await Task.findById(taskId).populate({ path: 'assignedTo', select: '-password' }).exec();
 

@@ -55,7 +55,7 @@ const login = asyncHandler(async (req, res) => {
   }
 
   const match = await bcrypt.compare(password, foundUser.password)
-  console.log(match)
+  // console.log(match)
 
   if (!match) return res.status(401).json({ message: 'Incorrect password' })
 
@@ -87,7 +87,7 @@ const login = asyncHandler(async (req, res) => {
 
   // Send accessToken containing username and roles 
   res.json({ accessToken })
-  console.log(accessToken)
+  // console.log(accessToken)
 })
 
 // @desc Refresh

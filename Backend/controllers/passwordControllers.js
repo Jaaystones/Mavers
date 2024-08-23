@@ -53,7 +53,7 @@ const forgotPassword = asyncHandler( async (req, res) => {
 
     // create fresh reset token if user email is found
     let resetToken = crypto.randomBytes(32).toString("hex") + user._id;
-    console.log(resetToken);//Used to reset password if mail service is available
+    // console.log(resetToken);//Used to reset password if mail service is available
    
 
     // Hash token before saving to DB
