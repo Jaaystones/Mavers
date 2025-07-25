@@ -1,24 +1,25 @@
+
 const dotenv = require('dotenv');
 require('express-async-errors');
-const express = require('express')
+const express = require('express');
 const app = express();
 const path = require('path');
 const { logger, logEvents } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
-//const firebaseAdmin = require('./config/firebaseAdmin');
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const userRoutes = require('./routes/userRoutes');
 const passwordRoutes = require('./routes/passwordRoutes');
 const reminderRoutes = require('./routes/reminderRoutes');
 const cookieParser = require('cookie-parser');
-//const bodyParser = require('body-parser');
-const cors = require('cors')
-const corsOptions = require('./config/corsOptions')
-const  mongoDb = require('./config/dbConfig');
+const cors = require('cors');
+const corsOptions = require('./config/corsOptions');
+const mongoDb = require('./config/dbConfig');
 const mongoose = require('mongoose');
+const { swaggerUi, swaggerSpec } = require('./docs/swagger');
+
 dotenv.config();
-const PORT = process.env.PORT || 10000
+const PORT = process.env.PORT || 5000;
 
 console.log(process.env.NODE_ENV);
 
@@ -39,7 +40,11 @@ app.use(cookieParser())
 //app.use(bodyParser.json());
 
 
+
 app.use('/', express.static(path.join(__dirname, '/public')));
+
+// Swagger UI route
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 //routes
 app.use('/api/', passwordRoutes);

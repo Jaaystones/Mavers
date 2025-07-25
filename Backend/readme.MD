@@ -4,7 +4,7 @@ Brief description of your project.
 
 ## Table of Contents
 
-- [Project tree](#Project Tree)
+- [Project](#Project Tree)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Routes](#api-routes)
@@ -13,44 +13,67 @@ Brief description of your project.
 - [License](#license)
 
 ## Project Tree
+
     ```bash
     root
     ├── config
+    │   ├── allowedOrigins.js
+    │   ├── corsOptions.js
     │   ├── dbConfig.js
     │   ├── firebaseAdmin.js
     │   ├── firebaseConfig.json
+    │   └── imageCloudConfig.js
     ├── controllers
     │   ├── authController.js
+    │   ├── passwordControllers.js
     │   ├── reminderController.js
     │   ├── taskController.js
-    │   └── reminderController.js
+    │   └── userController.js
+    ├── docs
+    ├── logs
+    │   ├── errLog.log
+    │   ├── mongoErrLog.log
+    │   └── reqLog.log
     ├── middleware
     │   ├── authMiddleware.js
     │   ├── errorHandler.js
     │   ├── logger.js
-    │   └── loginLimitter.js
+    │   └── loginLimiter.js
     ├── models
-    │   ├── User.js
+    │   ├── Reminder.js
     │   ├── Task.js
-    │   └── Reminder.js
+    │   ├── Token.js
+    │   └── User.js
+    ├── public
+    │   └── css
+    │       └── style.css
     ├── routes
-    │    ├── authRoutes.js
-    │    ├── taskRoutes.js
-    │    ├── root.js
-    │    ├── userRoutes.js
-    │    └── reminderRoutes.js
+    │   ├── authRoutes.js
+    │   ├── passwordRoutes.js
+    │   ├── reminderRoutes.js
+    │   ├── root.js
+    │   ├── taskRoutes.js
+    │   └── userRoutes.js
+    ├── uploads
+    │   └── <uploaded files>
+    ├── utils
+    │   ├── emailSender.js
+    │   ├── imageUploads.js
+    │   ├── reminderCal.js
+    │   └── sendReminders.js
     ├── views
-    │    ├── 404.html
-    │    ├── index.html
+    │   ├── 404.html
+    │   └── index.html
     ├── .gitignore
     ├── .env
     ├── app.js
     ├── package.json
     ├── package-lock.json
-    ├── Readme.MD 
+    ├── Readme.MD
+    ├── test_data.txt
     ├── user_story.md
 
-```
+````
 
 ## Installation
 
@@ -75,15 +98,20 @@ Brief description of your project.
 
   Replace values with your actual MongoDB URI, access token secret, and Firebase service account key path.
 
+
 4. **Start the Server**
-   ``` bash
+   ```bash
    npm start
 
+5. **API Documentation (Swagger UI)**
+   - After starting the server, visit [http://localhost:3500/api-docs](http://localhost:3500/api-docs) in your browser to view the interactive Swagger API documentation.
+   - The OpenAPI spec is located in the `docs/swagger.json` file. Update this file to document your endpoints.
+
 # Usage
- This application  uses role base authentication and authorization.
- The authentication process is utilized jwt webtokens which is added to the authorization header of the client application.
- The authorization process is handled using an authorization middleware which check for respective rolesand grants access according.
- An administrator has the sole responsibility to create and modify user accounts, tasks and assign tasks to each staff member 
+This application uses role-based authentication and authorization.
+The authentication process utilizes JWT webtokens, which are added to the authorization header of the client application.
+The authorization process is handled using an authorization middleware which checks for respective roles and grants access accordingly.
+An administrator has the sole responsibility to create and modify user accounts, tasks, and assign tasks to each staff member.
 
 # Api Routes
 
@@ -130,6 +158,6 @@ admin.initializeApp({
 });
 
 module.exports = admin;
-```
+````
 
 Replace 'https://your-project-id.firebaseio.com' with your Firebase project's database URL.

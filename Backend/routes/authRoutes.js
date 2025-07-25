@@ -4,16 +4,62 @@ const { registerUser, login, refresh, logout } = require('../controllers/authCon
 const { checkAuthenticated, checkAdmin } = require('../middleware/authMiddleware');
 const loginLimiter = require('../middleware/loginLimiter');
 
-// Register new user (admin only)
+
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Authentication endpoints
+ */
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user (admin only)
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       201:
+ *         description: User registered
+ */
 router.route('/register').post( checkAuthenticated, checkAdmin, registerUser);
 
-// Login user
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Login user
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: User logged in
+ */
 router.route('/login').post(loginLimiter,  login);
 
-// Logout user
+/**
+ * @swagger
+ * /auth/logout:
+ *   post:
+ *     summary: Logout user
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: User logged out
+ */
 router.route('/logout').post(logout);
 
-//refresh
+/**
+ * @swagger
+ * /auth/refresh:
+ *   get:
+ *     summary: Refresh authentication
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: Token refreshed
+ */
 router.route('/refresh').get(refresh)
 
 module.exports = router;
