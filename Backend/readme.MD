@@ -105,7 +105,15 @@ Brief description of your project.
 
 5. **API Documentation (Swagger UI)**
    - After starting the server, visit [http://localhost:3500/api-docs](http://localhost:3500/api-docs) in your browser to view the interactive Swagger API documentation.
-   - The OpenAPI spec is located in the `docs/swagger.json` file. Update this file to document your endpoints.
+   - The API documentation is organized in separate files in the `docs/` directory:
+     - `swagger.js` - Main swagger configuration and setup
+     - `auth.swagger.js` - Authentication endpoints
+     - `users.swagger.js` - User management endpoints
+     - `tasks.swagger.js` - Task management endpoints
+     - `reminders.swagger.js` - Reminder endpoints
+     - `password.swagger.js` - Password management endpoints
+     - `common.swagger.js` - Common schemas and responses
+   - To test protected endpoints, first login to get your JWT token, then click the "Authorize" button in Swagger UI and enter: `Bearer <your-token>`
 
 # Usage
 This application uses role-based authentication and authorization.

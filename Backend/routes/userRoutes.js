@@ -9,87 +9,16 @@ const {  getUser,
 
 router.use(checkAuthenticated, checkAdmin)
 
-
-/**
- * @swagger
- * tags:
- *   name: Users
- *   description: User management endpoints
- */
-
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Get all users
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: List of users
- */
+// route to get all users
 router.route('/').get(getAllUsers)
 
-/**
- * @swagger
- * /users/{id}:
- *   get:
- *     summary: Get user by ID
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: User data
- */
+// route to a user
 router.route('/:id').get(getUser)
 
-/**
- * @swagger
- * /users/{id}:
- *   patch:
- *     summary: Update user by ID
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: User updated
- */
+//route to update a user credentials
 router.route('/:id').patch(updateUser)
 
-/**
- * @swagger
- * /users/{id}:
- *   delete:
- *     summary: Delete user by ID
- *     tags: [Users]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: User deleted
- */
+// route to delete a user
 router.route('/:id').delete(deleteUser)
-
 
 module.exports = router

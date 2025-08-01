@@ -17,9 +17,8 @@ const corsOptions = require('./config/corsOptions');
 const mongoDb = require('./config/dbConfig');
 const mongoose = require('mongoose');
 const { swaggerUi, swaggerSpec } = require('./docs/swagger');
-
 dotenv.config();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 
 console.log(process.env.NODE_ENV);
 

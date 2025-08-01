@@ -10,114 +10,25 @@ const { createTask,
  } = require('../controllers/taskController');
 const { checkAuthenticated, checkAdmin } = require('../middleware/authMiddleware');
 
-
-/**
- * @swagger
- * tags:
- *   name: Tasks
- *   description: Task management endpoints
- */
-
-/**
- * @swagger
- * /tasks:
- *   post:
- *     summary: Create a new task (admin only)
- *     tags: [Tasks]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       201:
- *         description: Task created
- */
+// Route for creating a task (only admin can create tasks)
 router.route('/').post(checkAuthenticated, checkAdmin, upload.single("image"), createTask);
 
-/**
- * @swagger
- * /tasks:
- *   get:
- *     summary: Get all tasks
- *     tags: [Tasks]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: List of tasks
- */
+// Route for getting all tasks
 router.route('/').get(checkAuthenticated, checkAdmin, getAllTasks);
 
-/**
- * @swagger
- * /tasks/{id}:
- *   get:
- *     summary: Get task by ID
- *     tags: [Tasks]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Task data
- */
+// Route for getting single task
 router.route('/:id').get(checkAuthenticated,  getTaskById);
 
-/**
- * @swagger
- * /tasks/assess:
- *   post:
- *     summary: Assess a task (admin only)
- *     tags: [Tasks]
- *     security:
- *       - bearerAuth: []
- *     responses:
- *       200:
- *         description: Task assessed
- */
+// Route for assessing a task (only admin can assess tasks)
 router.route('/assess').post(checkAuthenticated, checkAdmin, assessTask);
 
-/**
- * @swagger
- * /tasks/{id}:
- *   patch:
- *     summary: Update task by ID
- *     tags: [Tasks]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Task updated
- */
+// Route for updating a task
 router.route('/:id').patch(checkAuthenticated, checkAdmin, upload.single("image"), updateTask);
 
-/**
- * @swagger
- * /tasks/{id}:
- *   delete:
- *     summary: Delete task by ID (admin only)
- *     tags: [Tasks]
- *     security:
- *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *     responses:
- *       200:
- *         description: Task deleted
- */
+// Route for deleting a task (only admin can delete tasks)
+router.route('/:id').delete(checkAuthenticated, checkAdmin, deleteTask);
+
+module.exports = router;
 router.route('/:id').delete(checkAuthenticated, checkAdmin, deleteTask);
 
 
